@@ -1,0 +1,19 @@
+Todo Application Setup Guide
+This guide will help you set up the Todo application for production, including configuring environment variables and properties.
+
+1. Production Configuration
+Database Configuration
+Make sure you have a MySQL database set up for the Todo application. Update the following properties in your production environment:
+
+spring.datasource.url: JDBC URL of your MySQL database.
+spring.datasource.username: Username for accessing the database.
+spring.datasource.password: Password for accessing the database.
+CORS Configuration
+Update the ALLOWED_ORIGINS environment variable to allow requests from your production frontend application.
+
+2. Setting Environment Variables
+Ensure that the following environment variables are set in your production environment:
+
+ALLOWED_ORIGINS: The allowed origins for CORS configuration. Example: https://your-production-domain.com
+3. Running the Application
+Once you have configured the necessary properties and environment variables, you can run the Todo application in your production environment.
