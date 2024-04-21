@@ -21,7 +21,7 @@
 
 <script>
 import axios from 'axios';
-const apiBaseUrl = import.meta.env.VITE_BASE_URL || 'http://localhost:8080';
+const apiBaseUrl = import.meta.env.VITE_BASE_URL;
 
 const data = {
   todos: [],
