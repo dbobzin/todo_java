@@ -21,7 +21,6 @@
 
 <script>
 import axios from 'axios';
-const apiBaseUrl = import.meta.env.VITE_BASE_URL;
 
 const data = {
   todos: [],
@@ -41,7 +40,7 @@ export default {
   methods: {
     async fetchTodos() {
       try {
-        const response = await axios.get(`${apiBaseUrl}/api/todos`);
+        const response = await axios.get('https://todojava-production.up.railway.app/');
         this.todos = response.data;
       } catch (error) {
         console.error('Error fetching todos:', error);
@@ -50,7 +49,7 @@ export default {
     async addTodo() {
       if (this.newTodo.trim() === '') return;
       try {
-        const response = await axios.post(`${apiBaseUrl}/api/todos`, {
+        const response = await axios.post('https://todojava-production.up.railway.app/', {
           title: this.newTodo,
           completed: false
         });
@@ -62,14 +61,14 @@ export default {
     },
     async updateTodoStatus(todo) {
       try {
-        await axios.put(`${apiBaseUrl}/api/todos/${todo.id}`, todo);
+        await axios.put('https://todojava-production.up.railway.app/', todo);
       } catch (error) {
         console.error('Error updating todo status:', error);
       }
     },
     async deleteTodo(todoId) {
       try {
-        await axios.delete(`${apiBaseUrl}/api/todos/${todoId}`);
+        await axios.delete('https://todojava-production.up.railway.app/api/todos');
         this.todos = this.todos.filter(todo => todo.id !== todoId);
       } catch (error) {
         console.error('Error deleting todo:', error);
