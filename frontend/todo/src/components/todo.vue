@@ -40,7 +40,7 @@ export default {
   methods: {
     async fetchTodos() {
       try {
-        const response = await axios.get('https://todojava-production.up.railway.app/');
+        const response = await axios.get('/api/todos');
         this.todos = response.data;
       } catch (error) {
         console.error('Error fetching todos:', error);
@@ -49,7 +49,7 @@ export default {
     async addTodo() {
       if (this.newTodo.trim() === '') return;
       try {
-        const response = await axios.post('https://todojava-production.up.railway.app/', {
+        const response = await axios.post('/api/todos', {
           title: this.newTodo,
           completed: false
         });
@@ -61,14 +61,14 @@ export default {
     },
     async updateTodoStatus(todo) {
       try {
-        await axios.put('https://todojava-production.up.railway.app/', todo);
+        await axios.put('/api/todos/', todo);
       } catch (error) {
         console.error('Error updating todo status:', error);
       }
     },
     async deleteTodo(todoId) {
       try {
-        await axios.delete('https://todojava-production.up.railway.app/api/todos');
+        await axios.delete('/api/todos/');
         this.todos = this.todos.filter(todo => todo.id !== todoId);
       } catch (error) {
         console.error('Error deleting todo:', error);
