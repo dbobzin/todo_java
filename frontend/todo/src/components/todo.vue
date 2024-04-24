@@ -61,14 +61,14 @@ export default {
     },
     async updateTodoStatus(todo) {
       try {
-        await axios.put('/api/todos/', todo);
+        await axios.put('/api/todos', todo);
       } catch (error) {
         console.error('Error updating todo status:', error);
       }
     },
     async deleteTodo(todoId) {
       try {
-        await axios.delete('/api/todos/');
+        await axios.delete('/api/todos');
         this.todos = this.todos.filter(todo => todo.id !== todoId);
       } catch (error) {
         console.error('Error deleting todo:', error);
