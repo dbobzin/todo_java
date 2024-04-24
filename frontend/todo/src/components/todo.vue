@@ -59,17 +59,17 @@ export default {
         console.error('Error adding todo:', error);
       }
     },
-    async updateTodoStatus(todo) {
+    async updateTodoStatus(id, todoDetails) {
       try {
-        await axios.put(`/api/todos/${todo.id}`, todo);
+        await axios.put(`/api/todos/${id}`, todoDetails);
       } catch (error) {
         console.error('Error updating todo status:', error);
       }
     },
-    async deleteTodo(todoId) {
+    async deleteTodo(id) {
       try {
-        await axios.delete(`/api/todos/${todoId}`);
-        this.todos = this.todos.filter(todo => todo.id !== todoId);
+        await axios.delete(`/api/todos/${id}`);
+        this.todos = this.todos.filter(todo => todo.id !== id);
       } catch (error) {
         console.error('Error deleting todo:', error);
       }
