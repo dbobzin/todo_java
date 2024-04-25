@@ -62,6 +62,11 @@ export default {
     async updateTodoStatus(id, todoDetails) {
       try {
         await axios.put(`/api/todos/${id}`, todoDetails);
+        // Assuming you want to update the local todos array as well
+        const index = this.todos.findIndex(todo => todo.id === id);
+        if (index !== -1) {
+          this.todos[index] = todoDetails;
+        }
       } catch (error) {
         console.error('Error updating todo status:', error);
       }
