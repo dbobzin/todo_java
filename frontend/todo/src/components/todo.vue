@@ -64,6 +64,7 @@ export default {
         const updatedTodo = {
           completed: todo.completed
         };
+        console.log('Updating todo:', updatedTodo);
         await axios.put(`/api/todos/${todo.id}`, updatedTodo);
       } catch (error) {
         console.error('Error updating todo status:', error);
