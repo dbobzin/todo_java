@@ -3,6 +3,7 @@ package com.todolist.todo.controller;
 import com.todolist.todo.model.Todo;
 import com.todolist.todo.repository.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,12 +35,21 @@ public class TodoController {
     }
 
     @PutMapping("/{id}")
-    public Todo updateTodo(@PathVariable Long id, @RequestBody Todo todoDetails) {
+    public ResponseEntity<Todo> updateTodo(@PathVariable Long id, @RequestBody Todo todoDetails) {
         Todo todo = todoRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Todo with id " + id + " not found"));
+
+        // Ensure that the title property is provided
+        if(todoDetails.getTitle() == null || todoDetails.getTitle().isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        }
+
         todo.setTitle(todoDetails.getTitle());
         todo.setCompleted(todoDetails.isCompleted());
-        return todoRepository.save(todo);
+
+        todo = todoRepository.save(todo);
+
+        return ResponseEntity.ok(todo);
     }
 
     @DeleteMapping("/{id}")
